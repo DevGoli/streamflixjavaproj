@@ -122,7 +122,7 @@ jobs:
                     aws sts get-caller-identity
             
             - name: Deploy to AWS Elastic Beanstalk
-              uses: aws-actions/elastic-beanstalk-deploy@v1
+              uses: aws-actions/aws-elastic-beanstalk-deploy@v1
               with:
                     application-name: streamflix
                     environment-name: streamflix-dev
