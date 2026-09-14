@@ -36,7 +36,7 @@ jobs:
               run: |
                 mkdir -p eb-deployment
                 cp target/*.jar eb-deployment/application.jar
-                echo "web: java -jar *.jar" > eb-deployment/Procfile
+                echo "web: java -jar application.jar" > eb-deployment/Procfile
                 ls -la eb-deployment
 
             - name: Upload artifact
