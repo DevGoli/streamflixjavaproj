@@ -9,7 +9,7 @@ permissions:
 
 jobs:
     build:
-        runs-on:ubuntu-latest
+        runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v3
@@ -39,8 +39,8 @@ jobs:
                 echo "web: java -jar *.jar" > eb-deployment/Procfile
                 ls -la eb-deployment
 
-            -name: Upload artifact
-                uses: actions/upload-artifact@v4
-                with:
+            - name: Upload artifact
+              uses: actions/upload-artifact@v4
+              with:
                     name: streamflix-deployment
                     path: eb-deployment
