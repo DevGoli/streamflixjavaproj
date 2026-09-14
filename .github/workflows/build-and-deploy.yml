@@ -1,0 +1,46 @@
+name: Build and Deploy Java Application to AWS Elastic Beanstalk
+
+on:
+    workflow_dispatch
+
+permissions:
+    contents: read
+    id-token: write
+
+jobs:
+    build:
+        runs-on:ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Set up JDK 21
+              uses: actions/setup-java@v4
+              with:
+                    distribution: 'temurin'
+                    java-version: '21'
+                    cache: 'maven'
+            - name: Java and Maven version
+              run: |
+                java --version
+                mvn --version
+
+            - name: Build with Maven
+              run: mvn clean package
+
+            - name: Verify Jar
+              run: |
+                ls -l target/*.jar
+                echo "Build and deploy workflow completed successfully."
+
+            - name: Prepare ebs package
+              run: |
+                mkdir -p eb-deployment
+                cp target/*.jar eb-deployment/application.jar
+                echo "web: java -jar *.jar" > eb-deployment/Procfile
+                ls -la eb-deployment
+
+            -name: Upload artifact
+                uses: actions/upload-artifact@v4
+                with:
+                    name: streamflix-deployment
+                    path: eb-deployment
