@@ -1,0 +1,6 @@
+aws_region       = "ap-southeast-2"
+s3_bucket        = "streamflix-backend"
+s3_key           = "dev/terraform.tfstate"
+application_name = "streamflix"
+environment_name = "streamflix-dev"
+instance_type    = "t3.micro"
