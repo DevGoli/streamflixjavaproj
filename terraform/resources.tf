@@ -8,7 +8,7 @@ data "aws_iam_policy_document" "ec2_assume_role" {
     actions = ["sts:AssumeRole"]
     principals {
       type        = "Service"
-      identifiers = ["elasticbeanstalk.amazonaws.com"]
+      identifiers = ["ec2.amazonaws.com"]
     }
   }
 }
